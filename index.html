@@ -2,148 +2,141 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Wedding Invitation</title>
-  <style>
-    body {
-      font-family: 'Georgia', serif;
-      background-color: #fff8f0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 50px;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Wedding Invitation</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            background-color: #fff8f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 50px;
+        }
 
-    h1 {
-      color: #b85c5c;
-    }
+        h1 {
+            color: #b85c5c;
+            font-family: "Poppins", sans-serif;
+        }
 
-    .invitation-card {
-      padding: 20px;
-      border-radius: 20px;
-      background-size: cover;
-      color: #b60303;
-      text-align: center;
-      box-shadow: 0 4px 10px rgba(198, 4, 4, 0.5);
-      position: relative;
-      box-sizing: border-box;
-      max-width: 500px;
-    }
+        .invitation-card {
+            padding: 20px;
+            border-radius: 20px;
+            background-size: cover;
+            color: #b60303;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(198, 4, 4, 0.5);
+            position: relative;
+            box-sizing: border-box;
+        }
 
-    .invitation-card::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(203, 1, 1, 0.637);
-      border-radius: 20px;
-      z-index: 0;
-    }
+        .invitation-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(203, 1, 1, 0.637);
+            border-radius: 20px;
+            z-index: 0;
+        }
 
-    .invitation-card>* {
-      position: relative;
-      z-index: 1;
-    }
+        .invitation-card>* {
+            position: relative;
+            z-index: 1;
+        }
 
-    .input-section {
-      margin-bottom: 20px;
-      text-align: center;
-    }
+        .input-section {
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-    input,
-    button {
-      padding: 10px;
-      font-size: 16px;
-      margin-top: 10px;
-      border-radius: 10px;
-      border: 1px solid #ccc;
-    }
+        input,
+        button {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+        }
 
-    button {
-      background-color: #b85c5c;
-      color: white;
-      cursor: pointer;
-    }
+        button {
+            background-color: #b85c5c;
+            color: white;
+            cursor: pointer;
+        }
 
-    button:hover {
-      background-color: #a04747;
-    }
+        button:hover {
+            background-color: #a04747;
+        }
 
-    video {
-      margin-top: 20px;
-      border-radius: 10px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-      width: 100%;
-      height: auto;
-    }
-  </style>
+        video {
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+            height: 400px;
+        }
+    </style>
 </head>
 
 <body>
-  <h1>Personalized Wedding Invitation</h1>
+    <h1>Personalized Wedding Invitation</h1>
 
-  <div class="input-section">
-    <label for="username">Enter your name:</label><br>
-    <input type="text" id="username" placeholder="Your Name" oninput="updateInvitation()" />
-    <br>
-    <button onclick="downloadVideo()">Download Invitation Video</button>
-  </div>
+    <div class="input-section">
+        <label for="username">Enter your name:</label><br>
+        <input type="text" id="username" placeholder="Your Name" oninput="updateInvitation()" />
+        <br>
+        <button onclick="downloadVideo()">Download Invitation Video</button>
+    </div>
 
-  <div class="invitation-card" id="invitation">
-    <p>You are cordially invited to the wedding of</p>
-    <h2>Emma & Liam</h2>
-    <p>With love,</p>
-    <h3 id="guest-name">[Your Name Here]</h3>
-    <p>Join us on June 15th, 2025<br>At Rosewood Garden, California</p>
+    <div class="invitation-card" id="invitation">
+        <video controls autoplay loop muted>
+            <source src="./wedding_invitation.mp4" type="video/mp4" />
+            <source src="./wedding_invitation.ogg" type="video/ogg" />
+            Your browser does not support the video tag.
+        </video>
+    </div>
 
-    <video controls autoplay loop muted>
-      <source src="./wedding_invitation.mp4" type="video/mp4" />
-      <source src="./wedding_invitation.ogg" type="video/ogg" />
-      Your browser does not support the video tag.
-    </video>
-  </div>
+    <script>
+        function updateInvitation() {
+            const name = document.getElementById('username').value.trim();
+            document.getElementById('guest-name').textContent = name || '[Your Name Here]';
+        }
 
-  <script>
-    function updateInvitation() {
-      const name = document.getElementById('username').value.trim();
-      document.getElementById('guest-name').textContent = name || '[Your Name Here]';
-    }
+        function downloadVideo() {
+            const name = document.getElementById('username').value.trim();
+            if (!name) {
+                alert("Please enter your name first.");
+                return;
+            }
 
-    function downloadVideo() {
-      const name = document.getElementById('username').value.trim();
-      if (!name) {
-        alert("Please enter your name first.");
-        return;
-      }
+            const videoUrl = 'wedding_invitation.mp4'; // Adjust if needed
 
-      const videoUrl = 'wedding_invitation.mp4'; // Adjust if needed
-
-      fetch(videoUrl)
-        .then(response => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok.");
-          }
-          return response.blob();
-        })
-        .then(blob => {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `Wedding_Invitation_for_${name}.mp4`;
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        })
-        .catch(error => {
-          console.error("Download failed:", error);
-          alert("Could not download the video. Please try again.");
-        });
-    }
-  </script>
+            fetch(videoUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok.");
+                    }
+                    return response.blob();
+                })
+                .then(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = `Wedding_Invitation_for_${name}.mp4`;
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    URL.revokeObjectURL(url);
+                })
+                .catch(error => {
+                    console.error("Download failed:", error);
+                    alert("Could not download the video. Please try again.");
+                });
+        }
+    </script>
 </body>
 
 </html>
